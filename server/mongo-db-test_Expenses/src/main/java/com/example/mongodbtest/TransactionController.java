@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -28,6 +29,16 @@ public class TransactionController {
         List<Transaction> transactions = this.transactionRepository.findAll();
         return transactions;
     }
+
+    @DeleteMapping("{tranId}")
+    public String deleteTransaction(@PathVariable String tranId){
+        this.transactionRepository.deleteById(tranId);
+
+        return "Deleted";
+
+
+    }
+
 /*
     @GetMapping("/summary/{category}")
     @ResponseBody
