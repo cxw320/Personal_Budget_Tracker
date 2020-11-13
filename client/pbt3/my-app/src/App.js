@@ -40,7 +40,13 @@ const App = () =>{
          </tr>
        </thead>
       <tbody>
-        {transactions}
+
+        {transactionList.map((transaction)=>(
+          <Transaction  id={transaction.id} description={transaction.description}
+          category={transaction.category} amount={transaction.amount}  />
+        ))
+      }
+        
       </tbody>
     </table>
 

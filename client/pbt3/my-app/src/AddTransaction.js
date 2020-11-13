@@ -11,7 +11,7 @@ const AddTransaction = ({callback}) => {
     }
     const [transaction, setTransaction] = useState(transactionTemplate);
 
-    const submitHandler = async (ev) => {
+    const saveTransaction = async (ev) => {
         ev.preventDefault();
         let res = await API.post('/transactions', transaction);
         setTransaction(transactionTemplate);
@@ -21,15 +21,19 @@ const AddTransaction = ({callback}) => {
     }
 
     const updateState = (property, value) => {
-        const t = JSON.parse(JSON.stringify(transaction));
-        t[property] = value;
+        const t = JSON.parse(JSON.stringify(transaction)); /* converting transaction (which isnt an object
+            its an Observer (its own data type) into a string, then converting that string into a json object 
+            so that we can edit the values and assign to the property and then pass that json object
+            into the setTransaction function to update the transaction state variable*/
+        
+       t[property] = value;
         setTransaction(t)
     }
 
 
     return (
 
-        <form onSubmit={submitHandler}>
+        <form onSubmit={saveTransaction}>
             {Object.keys(transactionTemplate).map(property => (
                 <div key={property}>
                     <label> {property.toUpperCase()} </label>
