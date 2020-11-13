@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Transaction from './Transaction.js';
+import AddTransaction from './AddTransaction.js';
 
 const App = () =>{
 
@@ -23,18 +24,19 @@ const App = () =>{
       const{id, description, category, amount} = transaction;
 
       return( 
-
           <Transaction id={id} description={description} category={category}
                 amount={amount}/>
-
       )    
-
   });
 
 
 
 
   return (
+
+  <main>  
+
+    <AddTransaction/>
 
     <table>
        <thead>
@@ -48,6 +50,8 @@ const App = () =>{
         {transactions}
       </tbody>
     </table>
+
+  </main>
 
 
   )

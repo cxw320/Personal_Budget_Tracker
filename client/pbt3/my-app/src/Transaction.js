@@ -11,6 +11,8 @@ const Transaction= ({id, description, category, amount}) =>{
             <td>{description}</td>
             <td>{category}</td>
             <td>{amount}</td>
+            <button>Edit</button>
+            <button>Delete</button>
         </tr>
         
   );
