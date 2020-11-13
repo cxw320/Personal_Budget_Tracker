@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import API from "./utils/API";
-import './App.css';
 
 
 const AddTransaction = ({callback}) => {
@@ -24,8 +23,7 @@ const AddTransaction = ({callback}) => {
         const t = JSON.parse(JSON.stringify(transaction)); /* converting transaction (which isnt an object
             its an Observer (its own data type) into a string, then converting that string into a json object 
             so that we can edit the values and assign to the property and then pass that json object
-            into the setTransaction function to update the transaction state variable*/
-        
+            into the setTransaction function to update the transaction state variable*/    
        t[property] = value;
         setTransaction(t)
     }
@@ -44,6 +42,7 @@ const AddTransaction = ({callback}) => {
 
 
             <button type="submit"> Add Transaction</button>
+            <button type="delete"> Delete Transaction</button>
         </form>
 
     );

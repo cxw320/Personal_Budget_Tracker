@@ -1,6 +1,5 @@
 
 import React, {useState, useEffect} from 'react';
-import './App.css';
 
 
 const Transaction= ({id, description, category, amount}) =>{

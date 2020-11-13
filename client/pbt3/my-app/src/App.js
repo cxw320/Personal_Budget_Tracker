@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import React, {useState, useEffect} from 'react';
-import './App.css';
 import Transaction from './Transaction.js';
 import AddTransaction from './AddTransaction.js';
 import API from "./utils/API";
