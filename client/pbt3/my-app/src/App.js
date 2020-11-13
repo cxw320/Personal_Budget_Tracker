@@ -10,8 +10,6 @@ const App = () =>{
 
   const [transactionList, setTransactionList] = useState([]);
 
-
-
   useEffect(()=>{
     loadTransactions().then(()=>{
       console.log('transactions loaded')

@@ -31,7 +31,7 @@ const AddTransaction = ({callback}) => {
     }
 
 
-    return (
+  return(
 
         <form onSubmit={saveTransaction}>
             {Object.keys(transactionTemplate).map(property => (
