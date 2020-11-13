@@ -18,7 +18,7 @@ const App = () =>{
   ]
 
 
-  const [transactionList, setTransaction] = useState(dummyData);
+  const [transactionList, setTransactionList] = useState(dummyData);
 
   var transactions = transactionList.map((transaction) =>{
       const{id, description, category, amount} = transaction;
@@ -33,6 +33,7 @@ const App = () =>{
 
   const addTransaction = newTransaction => {
 
+    API.post()
     const url = "http://localhost:8080/transactions";
     const options = {
 
@@ -66,7 +67,12 @@ const App = () =>{
          </tr>
        </thead>
       <tbody>
-        {transactions}
+        {transactionList.map(transaction => (
+            <Transaction id={transaction.id}
+                         description={transaction.description}
+                         category={transaction.category}
+                         amount={transaction.amount}/>
+        ))}
       </tbody>
     </table>
 
