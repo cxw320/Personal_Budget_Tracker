@@ -18,6 +18,7 @@ const App = () =>{
   ]
 
 
+  //Move the iteration logic to view 
   const [transactionList, setTransactionList] = useState(dummyData);
 
   var transactions = transactionList.map((transaction) =>{
@@ -32,9 +33,8 @@ const App = () =>{
 
 
   const addTransaction = newTransaction => {
-
-    API.post()
-    const url = "http://localhost:8080/transactions";
+/*
+    //const url = "http://localhost:8080/transactions";
     const options = {
 
       method: 'POST',
@@ -47,7 +47,7 @@ const App = () =>{
 
     let response = fetch(url, options);
     let data = response.json();
-    //this.setState({allTransactions: data});
+    //this.setState({allTransactions: data});*/
 
   }
 
@@ -67,12 +67,7 @@ const App = () =>{
          </tr>
        </thead>
       <tbody>
-        {transactionList.map(transaction => (
-            <Transaction id={transaction.id}
-                         description={transaction.description}
-                         category={transaction.category}
-                         amount={transaction.amount}/>
-        ))}
+        {transactions}
       </tbody>
     </table>
 

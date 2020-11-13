@@ -9,6 +9,7 @@ export default {
     async complex(path, body, method='POST'){
         return await fetch(base + path,{
             method: method,
+            mode: 'cors',
             headers:{
                 'Content-Type': 'application/json'
             },

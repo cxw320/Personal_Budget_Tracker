@@ -13,7 +13,7 @@ const AddTransaction = ({callback}) => {
 
     const submitHandler = async (ev) => {
         ev.preventDefault();
-        let res = await API.post('/transaction/', transaction);
+        let res = await API.post('/transactions', transaction);
         setTransaction(transactionTemplate);
         if (typeof callback !== 'undefined') {
             callback(res);
