@@ -3,52 +3,22 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import Transaction from './Transaction.js';
 import AddTransaction from './AddTransaction.js';
+import API from "./utils/API";
 
 const App = () =>{
 
-  const dummyData = [ 
-    { id: 1,
-      description: 'test',
-      category: 'test',
-      amount: 100},
-    { id: 2,
-      description: 'store',
-      category: 'food',
-      amount: 200}
-  ]
 
+  const [transactionList, setTransactionList] = useState([]);
 
-  const [transactionList, setTransactionList] = useState(dummyData);
+  useEffect(()=>{
+    loadTransactions().then(()=>{
+      console.log('transactions loaded')
+    })
+  },[])
 
-  var transactions = transactionList.map((transaction) =>{
-      const{id, description, category, amount} = transaction;
-
-      return( 
-          <Transaction id={id} description={description} category={category}
-                amount={amount}/>
-      )    
-  });
-
-
-
-  const addTransaction = newTransaction => {
-
-    API.post()
-    const url = "http://localhost:8080/transactions";
-    const options = {
-
-      method: 'POST',
-      mode: 'cors',
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newTransaction)
-    };
-
-    let response = fetch(url, options);
-    let data = response.json();
-    //this.setState({allTransactions: data});
-
+  const loadTransactions = async () => {
+    const transactions = await API.get('/transactions/all');
+    setTransactionList(transactions)
   }
 
 
@@ -56,7 +26,7 @@ const App = () =>{
 
   <main>  
 
-    <AddTransaction AddTransaction={AddTransaction}/>
+    <AddTransaction callback={loadTransactions}/>
 
     <table>
        <thead>
