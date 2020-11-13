@@ -31,12 +31,31 @@ const App = () =>{
 
 
 
+  const addTransaction = newTransaction => {
+
+    const url = "http://localhost:8080/transactions";
+    const options = {
+
+      method: 'POST',
+      mode: 'cors',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newTransaction)
+    };
+
+    let response = fetch(url, options);
+    let data = response.json();
+    //this.setState({allTransactions: data});
+
+  }
+
 
   return (
 
   <main>  
 
-    <AddTransaction/>
+    <AddTransaction AddTransaction={AddTransaction}/>
 
     <table>
        <thead>

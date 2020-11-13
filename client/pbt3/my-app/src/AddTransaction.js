@@ -3,11 +3,19 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 
 
-const AddTransaction= () =>{
+const AddTransaction= ({AddTransaction}) =>{
+
+  const submitHandler = e =>{
+    e.preventDefault();
+    AddTransaction()
+
+  }  
+
+
 
   return(
 
-    <form>
+    <form onSubmit={submitHandler}>
 
         <span> Description </span>
         <input type="text" />
