@@ -35,8 +35,6 @@ public class TransactionController {
         this.transactionRepository.deleteById(tranId);
 
         return "Deleted";
-
-
     }
 
 /*

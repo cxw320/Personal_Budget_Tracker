@@ -1,85 +1,59 @@
 import logo from './logo.svg';
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
-import TransactionItem from './TransactionItem';
+import Transaction from './Transaction.js';
 
-class App extends React.Component {
+const App = () =>{
 
-  constructor(props){
-
-    super(props);
-
-    this.state = {
-
-        allTransactions: [],
-        apiResponse: ""
-    }
-
-
-    this.onDelete = this.onDelete.bind(this);
-  }
+  const dummyData = [ 
+    { id: 1,
+      description: 'test',
+      category: 'test',
+      amount: 100},
+    { id: 2,
+      description: 'store',
+      category: 'food',
+      amount: 200}
+  ]
 
 
-  callAPI(){
-    fetch("http://localhost:8080/transactions/all")
-      .then(res => res.json())
-      .then(res => this.setState({allTransactions: res}));
-      console.log(this.state.allTransactions);
-  }
+  const [transactionList, setTransaction] = useState(dummyData);
+
+  var transactions = transactionList.map((transaction) =>{
+      const{id, description, category, amount} = transaction;
+
+      return( 
+
+          <Transaction id={id} description={description} category={category}
+                amount={amount}/>
+
+      )    
+
+  });
 
 
-  componentWillMount(){
-    const transactions = this.getTransactions();
-    this.setState({transactions});
-    
-  }
-
-  getTransactions(){
-    this.callAPI();
-  }
-
-  onDelete(id){
-		console.log('deleteTask method hit');
-		
-		const url = 
-		`http://localhost:8080/transactions/${id}`;
-		
-		console.log(url);
-		const options = {
-			method: 'DELETE',
-			mode: 'cors',
-		};
-		
-	
-
-  }
-
-  render(){
-    return (
 
 
-      <div className="App">
-        <h1> Personal Budget Tracker </h1>
-      {
-        this.state.allTransactions.map(transaction =>{
-          return(
-           <TransactionItem
-            key={transaction.id}
-            description={transaction.description}
-            category={transaction.category}
-            amount={transaction.amount}
-            onDelete={this.onDelete}  
-            />
-           
-          );
-        })
-      }
+  return (
 
-     </div>
-    );
+    <table>
+       <thead>
+         <tr>
+           <th>Description</th>
+           <th>Category</th>
+           <th>Amount</th>
+         </tr>
+       </thead>
+      <tbody>
+        {transactions}
+      </tbody>
+    </table>
 
-  }
-}
+
+  )
+
+
+};
 
 
 export default App;
