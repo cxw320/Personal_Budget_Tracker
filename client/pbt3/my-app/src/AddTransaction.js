@@ -12,7 +12,6 @@ const AddTransaction= ({AddTransaction}) =>{
   }  
 
 
-
   return(
 
     <form onSubmit={submitHandler}>

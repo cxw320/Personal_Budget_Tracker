@@ -18,7 +18,8 @@ const App = () =>{
   ]
 
 
-  const [transactionList, setTransaction] = useState(dummyData);
+  //Move the iteration logic to view
+  const [transactionList, setTransactionList] = useState(dummyData);
 
   var transactions = transactionList.map((transaction) =>{
       const{id, description, category, amount} = transaction;
