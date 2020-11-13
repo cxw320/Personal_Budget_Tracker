@@ -39,7 +39,7 @@ const App = () =>{
       <tbody>
 
         {transactionList.map((transaction)=>(
-          <Transaction  id={transaction.id} description={transaction.description}
+          <Transaction callback={loadTransactions} id={transaction.id} description={transaction.description}
           category={transaction.category} amount={transaction.amount}  />
         ))
       }

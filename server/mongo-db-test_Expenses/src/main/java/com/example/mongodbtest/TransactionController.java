@@ -30,11 +30,11 @@ public class TransactionController {
         return transactions;
     }
 
-    @DeleteMapping("{tranId}")
-    public String deleteTransaction(@PathVariable String tranId){
+    @DeleteMapping("/{tranId}")
+    public List<Transaction> deleteTransaction(@PathVariable String tranId){
         this.transactionRepository.deleteById(tranId);
-
-        return "Deleted";
+        List<Transaction> transactions = this.transactionRepository.findAll();
+        return transactions;
     }
 
 /*

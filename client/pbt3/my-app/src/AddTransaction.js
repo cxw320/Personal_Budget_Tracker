@@ -42,7 +42,7 @@ const AddTransaction = ({callback}) => {
 
 
             <button type="submit"> Add Transaction</button>
-            <button type="delete"> Delete Transaction</button>
+        
         </form>
 
     );
