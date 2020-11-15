@@ -7,6 +7,7 @@ function CustomToggleHook() {
     setToggle(!toggle);
   };
 
+  console.log(toggle);
   return [toggle, handleToggle];
 }
 

@@ -12,8 +12,10 @@ const AddTransaction = ({callback}) => {
 
     const saveTransaction = async (ev) => {
         ev.preventDefault();
+        console.log(transaction);
         let res = await API.post('/transactions', transaction);
         setTransaction(transactionTemplate);
+        
         if (typeof callback !== 'undefined') {
             callback(res);
         }
