@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import API from "./utils/API";
 import CustomToggleHook from "./customHooks/toggleStateHook";
 import EditTransaction from "./EditTransaction";
+import styles from './index.css';
 
 
 
@@ -24,23 +25,30 @@ const Transaction= ({callback, id, description, category, amount}) =>{
 
   return(
 
-    <div>
+    <tr classname={styles.parenttr}>
+    
     {isEdit ? (
     
       <EditTransaction id={id} category={category} description={description}
       amount={amount} callback={callback} toggleEditForm={setEdit}/>
       
     ) : (  
-      <tr key={id}> 
-            <td>{description}</td>
+      <tr key={id}>
+            <td classname={styles.description}>{description}</td>
             <td>{category}</td>
             <td>{amount}</td>
             <button onClick={setEdit}>Edit</button>
             <button type='submit' id={id} onClick={deleteTransaction}>Delete</button>
       </tr>
+      
     )}
 
-    </div>
+
+    </tr>
+
+    
+
+    
     
 
     

@@ -1,8 +1,12 @@
-import logo from './logo.svg';
+
 import React, {useState, useEffect} from 'react';
 import Transaction from './Transaction.js';
 import AddTransaction from './AddTransaction.js';
 import API from "./utils/API";
+import * as ReactBootStrap from 'react-bootstrap';
+import styles from './index.css';
+import SimpleBarChart from './SimpleBarChart';
+
 
 const App = () =>{
 
@@ -22,13 +26,15 @@ const App = () =>{
   }
 
 
+
+
   return (
 
   <main>  
 
     <AddTransaction callback={loadTransactions}/>
 
-    <table>
+    <ReactBootStrap.Table>
        <thead>
          <tr>
            <th>Description</th>
@@ -45,7 +51,10 @@ const App = () =>{
       }
         
       </tbody>
-    </table>
+    </ReactBootStrap.Table>
+
+
+    <SimpleBarChart />
 
   </main>
 

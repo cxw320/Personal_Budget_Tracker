@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.parenttr {
+
+  position: absolute;
+  margin-top: -100px;
+  margin-left: -100px;
+
+}
+
+.description{
+
+  width: 50%;
+
+}
