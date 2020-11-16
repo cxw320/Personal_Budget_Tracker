@@ -21,21 +21,30 @@ public class DbSeeder implements CommandLineRunner {
     public void run(String... strings) throws Exception{
         Transaction t1 = new Transaction(
                 "ANGELINAS",
+                1,
+                true,
                 "Food",
-                 -9.35
+                -9.35
         );
+
         Transaction t2 = new Transaction(
                 "Liberty Mutual",
+                1,
+                false,
                 "Paycheck",
-                2000
+                2000.0
         );
         Transaction t3 = new Transaction(
                 "Rosebud",
+                 1,
+                true,
                 "Food",
                 -47.52
         );
         Transaction t4 = new Transaction(
                 "Apple.com/Bill",
+                1,
+                true,
                 "Subscription",
                 -0.99
         );

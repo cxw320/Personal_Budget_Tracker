@@ -5,7 +5,7 @@ import AddTransaction from './AddTransaction.js';
 import API from "./utils/API";
 import * as ReactBootStrap from 'react-bootstrap';
 import styles from './index.css';
-import SimpleBarChart from './SimpleBarChart';
+import StackedBarChart from './StackedBarChart';
 
 
 const App = () =>{
@@ -54,7 +54,7 @@ const App = () =>{
     </ReactBootStrap.Table>
 
 
-    <SimpleBarChart />
+    <StackedBarChart />
 
   </main>
 
