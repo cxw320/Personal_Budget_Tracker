@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Transaction from './Transaction.js';
 import AddTransaction from './AddTransaction.js';
 import API from "./utils/API";
-import * as ReactBootStrap from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import styles from './index.css';
 import StackedBarChart from './StackedBarChart';
 
@@ -30,32 +30,41 @@ const App = () =>{
 
   return (
 
+
   <main>  
+    <Container>
 
     <AddTransaction callback={loadTransactions}/>
 
-    <ReactBootStrap.Table>
-       <thead>
-         <tr>
-           <th>Description</th>
-           <th>Category</th>
-           <th>Amount</th>
-         </tr>
-       </thead>
-      <tbody>
+    <Row>
 
-        {transactionList.map((transaction)=>(
-          <Transaction callback={loadTransactions} id={transaction.id} description={transaction.description}
+      <Col className="text-center">
+     <p className="text-center"> description </p>
+
+      </Col>
+      <Col>
+      Category
+      </Col>
+      <Col>
+        Amount
+      </Col>
+
+      <Col>
+      </Col>
+    </Row>
+
+   
+      
+    {transactionList.map((transaction)=>(
+       <Row className="text-center" id={transaction.id}>    <Transaction callback={loadTransactions} id={transaction.id} description={transaction.description}
           category={transaction.category} amount={transaction.amount}  />
+          </Row>
         ))
       }
-        
-      </tbody>
-    </ReactBootStrap.Table>
-
 
     <StackedBarChart />
 
+    </Container>
   </main>
 
 

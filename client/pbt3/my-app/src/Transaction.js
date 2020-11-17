@@ -4,7 +4,7 @@ import API from "./utils/API";
 import CustomToggleHook from "./customHooks/toggleStateHook";
 import EditTransaction from "./EditTransaction";
 import styles from './index.css';
-
+import {Row, Col} from 'react-bootstrap';
 
 
 const Transaction= ({callback, id, description, category, amount}) =>{
@@ -25,7 +25,7 @@ const Transaction= ({callback, id, description, category, amount}) =>{
 
   return(
 
-    <tr classname={styles.parenttr}>
+    <>
     
     {isEdit ? (
     
@@ -33,18 +33,31 @@ const Transaction= ({callback, id, description, category, amount}) =>{
       amount={amount} callback={callback} toggleEditForm={setEdit}/>
       
     ) : (  
-      <tr key={id}>
-            <td classname={styles.description}>{description}</td>
-            <td>{category}</td>
-            <td>{amount}</td>
-            <button onClick={setEdit}>Edit</button>
-            <button type='submit' id={id} onClick={deleteTransaction}>Delete</button>
-      </tr>
       
+      <>   
+          <Col >
+            {description}
+          </Col>
+
+          <Col>
+            {category}
+          </Col>
+
+          <Col>
+            {amount}
+          </Col>
+
+          <Col>
+                <button onClick={setEdit}>Edit</button>
+                <button type='submit' id={id} onClick={deleteTransaction}>Delete</button>
+          </Col>
+      </>
+
+
     )}
 
 
-    </tr>
+    </>
 
     
 
