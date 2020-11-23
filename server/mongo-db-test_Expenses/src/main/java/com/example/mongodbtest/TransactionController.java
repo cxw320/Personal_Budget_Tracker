@@ -26,10 +26,11 @@ public class TransactionController {
 
     @GetMapping("/summary")
    // public ArrayList<MonthlySummary> getSummary() {
-    public ArrayList<Transaction>  getSummary() {
+    public List<Transaction>  getSummary() {
         List<Transaction> transactions = this.transactionRepository.findAll();
 
-
+        return transactions;
+/*
         TransactionSummary transactionSummary = new TransactionSummary();
 
         transactionSummary.filterTransactions(transactions,"Food");
@@ -39,7 +40,7 @@ public class TransactionController {
         ArrayList<MonthlySummary> monthlySummaries = transactionSummary.getMonthlySummaries();
         System.out.println(monthlySummaries.get(0));*/
 
-        return results;
+        //return results;
     }
 
     @GetMapping("/test")
@@ -49,9 +50,21 @@ public class TransactionController {
                 100,
                 200
         );
+        MonthlySummary m2 = new MonthlySummary(
+                "Mar-20",
+                500,
+                200
+        );
+        MonthlySummary m3 = new MonthlySummary(
+                "Apr-20",
+                200,
+                100
+        );
 
         List<MonthlySummary> testSummary = new ArrayList<MonthlySummary>();
         testSummary.add(m1);
+        testSummary.add(m2);
+        testSummary.add(m3);
 
         return testSummary;
     }
@@ -68,6 +81,11 @@ public class TransactionController {
         this.transactionRepository.deleteById(tranId);
         List<Transaction> transactions = this.transactionRepository.findAll();
         return transactions;
+    }
+
+    @RequestMapping(value = "/hello")
+    public String hello() {
+        return "Hello World";
     }
 
 /*

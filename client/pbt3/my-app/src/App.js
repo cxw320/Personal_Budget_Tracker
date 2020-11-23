@@ -1,4 +1,3 @@
-
 import React, {useState, useEffect} from 'react';
 import Transaction from './Transaction.js';
 import AddTransaction from './AddTransaction.js';
@@ -16,8 +15,10 @@ const App = () =>{
   useEffect(()=>{
     loadTransactions().then(()=>{
       console.log('transactions loaded')
-    })
+    })        
   },[])
+
+
 
 
   const loadTransactions = async () => {
