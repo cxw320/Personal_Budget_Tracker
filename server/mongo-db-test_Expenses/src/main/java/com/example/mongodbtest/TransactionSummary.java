@@ -75,7 +75,7 @@ public class TransactionSummary {
 
         //Step 2: Sum via Month groupings
         Map<String, Double> result = holdTransactions.stream().collect(Collectors.groupingBy(Transaction::getDate,
-                Transaction::getCategory,
+
                 Collectors.summingDouble(Transaction::getAmount)));
 
 

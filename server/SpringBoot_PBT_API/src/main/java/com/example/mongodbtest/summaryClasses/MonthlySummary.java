@@ -1,4 +1,4 @@
-package com.example.mongodbtest;
+package com.example.mongodbtest.summaryClasses;
 
 public class MonthlySummary {
 

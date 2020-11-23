@@ -1,12 +1,14 @@
 package com.example.mongodbtest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.mongodbtest.summaryClasses.Director;
+import com.example.mongodbtest.summaryClasses.MonthCategorySumBuilder;
+import com.example.mongodbtest.summaryClasses.MonthCategorySummary;
+import com.example.mongodbtest.summaryClasses.MonthlySummary;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -26,8 +28,18 @@ public class TransactionController {
     }
 
     @GetMapping("/summary")
-    public List<MonthlySummary>  getSummary() throws ParseException {
+    public List<MonthCategorySummary> getSummary() throws ParseException {
         List<Transaction> transactions = this.transactionRepository.findAll();
+
+        Director director = new Director();
+        MonthCategorySumBuilder summaryBuilder = new MonthCategorySumBuilder(transactions);
+        director.buildMonthCategorySum(summaryBuilder);
+        List<MonthCategorySummary> summaries = summaryBuilder.getSummaries();
+        return summaries;
+
+
+
+       /* List<Transaction> transactions = this.transactionRepository.findAll();
 
         TransactionSummary transactionSummary = new TransactionSummary();
 
@@ -35,12 +47,14 @@ public class TransactionController {
         ArrayList<Transaction> results = transactionSummary.getGranularTransactions();
         ArrayList<MonthlySummary> results2 = transactionSummary.calcMonthlySummary();
 
-        return results2;
+        return results2;*/
 
         /*
         transactionSummary.calcMonthlySummary();
         ArrayList<MonthlySummary> monthlySummaries = transactionSummary.getMonthlySummaries();
         return results;*/
+
+
     }
 
     @GetMapping("/test")
