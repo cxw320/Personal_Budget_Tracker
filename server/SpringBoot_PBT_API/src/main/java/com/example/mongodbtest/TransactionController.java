@@ -1,9 +1,6 @@
 package com.example.mongodbtest;
 
-import com.example.mongodbtest.summaryClasses.Director;
-import com.example.mongodbtest.summaryClasses.MonthCategorySumBuilder;
-import com.example.mongodbtest.summaryClasses.MonthCategorySummary;
-import com.example.mongodbtest.summaryClasses.MonthlySummary;
+import com.example.mongodbtest.summaryClasses.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -27,8 +24,8 @@ public class TransactionController {
         return transactions;
     }
 
-    @GetMapping("/summary")
-    public List<MonthCategorySummary> getSummary() throws ParseException {
+    @GetMapping("/MonthCategorySummary")
+    public List<MonthCategorySummary> getMonthCategorySummary() throws ParseException {
         List<Transaction> transactions = this.transactionRepository.findAll();
 
         Director director = new Director();
@@ -36,8 +33,6 @@ public class TransactionController {
         director.buildMonthCategorySum(summaryBuilder);
         List<MonthCategorySummary> summaries = summaryBuilder.getSummaries();
         return summaries;
-
-
 
        /* List<Transaction> transactions = this.transactionRepository.findAll();
 
@@ -56,6 +51,21 @@ public class TransactionController {
 
 
     }
+
+    //same thing but for month summaries - no category
+    @GetMapping("/MonthSummary")
+    public List<MonthlySummary> getMonthSummary() throws ParseException {
+        List<Transaction> transactions = this.transactionRepository.findAll();
+
+        Director director = new Director();
+        MonthSumBuilder summaryBuilder = new MonthSumBuilder(transactions);
+        director.buildMonthCategorySum(summaryBuilder);
+        List<MonthlySummary> summaries = summaryBuilder.getSummaries();
+        return summaries;
+
+    }
+
+
 
     @GetMapping("/test")
     public List<MonthlySummary> getTest() {
