@@ -2,12 +2,14 @@ package com.example.mongodbtest;
 
 public class MonthlySummary {
 
-    int amount;
     String month;
+    double foodAmount;
+    double rentAmount;
 
-    public MonthlySummary(int amount, String month){
-        this.amount = amount;
+    public MonthlySummary(String month, double foodAmount, double rentAmount){
         this.month = month;
+        this.foodAmount = foodAmount;
+        this.rentAmount = rentAmount;
     }
 
 }

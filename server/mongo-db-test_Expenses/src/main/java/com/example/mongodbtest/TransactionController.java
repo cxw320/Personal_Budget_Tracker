@@ -25,15 +25,35 @@ public class TransactionController {
     }
 
     @GetMapping("/summary")
-    public ArrayList<MonthlySummary> getSummary() {
+   // public ArrayList<MonthlySummary> getSummary() {
+    public ArrayList<Transaction>  getSummary() {
         List<Transaction> transactions = this.transactionRepository.findAll();
+
 
         TransactionSummary transactionSummary = new TransactionSummary();
 
-        transactionSummary.filterTransactions(transactions,"food");
-        transactionSummary.calcMonthlySummary();
+        transactionSummary.filterTransactions(transactions,"Food");
+        ArrayList<Transaction> results = transactionSummary.getGranularTransactions();
+
+   /*     transactionSummary.calcMonthlySummary();
         ArrayList<MonthlySummary> monthlySummaries = transactionSummary.getMonthlySummaries();
-        return monthlySummaries;
+        System.out.println(monthlySummaries.get(0));*/
+
+        return results;
+    }
+
+    @GetMapping("/test")
+    public List<MonthlySummary> getTest() {
+        MonthlySummary m1 = new MonthlySummary(
+                "Jan-20",
+                100,
+                200
+        );
+
+        List<MonthlySummary> testSummary = new ArrayList<MonthlySummary>();
+        testSummary.add(m1);
+
+        return testSummary;
     }
 
     @PostMapping
