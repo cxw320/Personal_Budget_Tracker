@@ -36,7 +36,7 @@ public class DbSeeder implements CommandLineRunner {
         );
         Transaction t3 = new Transaction(
                 "Rosebud",
-                 "03-04-2020",
+                 "01-04-2020",
                 true,
                 "Food",
                 -47.52

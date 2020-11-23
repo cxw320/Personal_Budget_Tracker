@@ -26,14 +26,14 @@ public class TransactionController {
     }
 
     @GetMapping("/summary")
-    public List<Transaction>  getSummary() throws ParseException {
+    public List<MonthlySummary>  getSummary() throws ParseException {
         List<Transaction> transactions = this.transactionRepository.findAll();
 
         TransactionSummary transactionSummary = new TransactionSummary();
 
         transactionSummary.filterTransactions(transactions,"Food");
         ArrayList<Transaction> results = transactionSummary.getGranularTransactions();
-        ArrayList<Transaction> results2 = transactionSummary.calcMonthlySummary();
+        ArrayList<MonthlySummary> results2 = transactionSummary.calcMonthlySummary();
 
         return results2;
 
@@ -47,18 +47,18 @@ public class TransactionController {
     public List<MonthlySummary> getTest() {
         MonthlySummary m1 = new MonthlySummary(
                 "Jan-20",
-                100,
-                200
+                100
+
         );
         MonthlySummary m2 = new MonthlySummary(
                 "Mar-20",
-                500,
-                200
+                500
+
         );
         MonthlySummary m3 = new MonthlySummary(
                 "Apr-20",
-                200,
-                100
+                200
+
         );
 
         List<MonthlySummary> testSummary = new ArrayList<MonthlySummary>();

@@ -3,36 +3,30 @@ package com.example.mongodbtest;
 public class MonthlySummary {
 
     private String month;
-    private double foodAmount;
-    private double rentAmount;
+    private double amount;
 
-    public MonthlySummary(String month, double foodAmount, double rentAmount){
+
+    public MonthlySummary(String month, double amount){
         this.month = month;
-        this.foodAmount = foodAmount;
-        this.rentAmount = rentAmount;
+        this.amount = amount;
+
     }
 
     public void setMonth(String month) {
         this.month = month;
     }
 
-    public void setFoodAmount(double foodAmount) {
-        this.foodAmount = foodAmount;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
-    public void setRentAmount(double rentAmount) {
-        this.rentAmount = rentAmount;
-    }
 
     public String getMonth() {
         return month;
     }
 
-    public double getFoodAmount() {
-        return foodAmount;
+    public double getAmount() {
+        return amount;
     }
 
-    public double getRentAmount() {
-        return rentAmount;
-    }
 }
