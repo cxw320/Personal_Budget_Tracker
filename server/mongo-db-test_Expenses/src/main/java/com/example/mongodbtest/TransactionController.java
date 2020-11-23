@@ -3,6 +3,7 @@ package com.example.mongodbtest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,22 +26,21 @@ public class TransactionController {
     }
 
     @GetMapping("/summary")
-   // public ArrayList<MonthlySummary> getSummary() {
-    public List<Transaction>  getSummary() {
+    public List<Transaction>  getSummary() throws ParseException {
         List<Transaction> transactions = this.transactionRepository.findAll();
 
-        return transactions;
-/*
         TransactionSummary transactionSummary = new TransactionSummary();
 
         transactionSummary.filterTransactions(transactions,"Food");
         ArrayList<Transaction> results = transactionSummary.getGranularTransactions();
+        ArrayList<Transaction> results2 = transactionSummary.calcMonthlySummary();
 
-   /*     transactionSummary.calcMonthlySummary();
+        return results2;
+
+        /*
+        transactionSummary.calcMonthlySummary();
         ArrayList<MonthlySummary> monthlySummaries = transactionSummary.getMonthlySummaries();
-        System.out.println(monthlySummaries.get(0));*/
-
-        //return results;
+        return results;*/
     }
 
     @GetMapping("/test")

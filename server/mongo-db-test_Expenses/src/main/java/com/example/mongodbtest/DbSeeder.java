@@ -21,7 +21,7 @@ public class DbSeeder implements CommandLineRunner {
     public void run(String... strings) throws Exception{
         Transaction t1 = new Transaction(
                 "ANGELINAS",
-                1,
+                "01-03-2020",
                 true,
                 "Food",
                 -9.35
@@ -29,21 +29,21 @@ public class DbSeeder implements CommandLineRunner {
 
         Transaction t2 = new Transaction(
                 "Liberty Mutual",
-                1,
+                "02-01-2020",
                 false,
                 "Paycheck",
                 2000.0
         );
         Transaction t3 = new Transaction(
                 "Rosebud",
-                 1,
+                 "03-04-2020",
                 true,
                 "Food",
                 -47.52
         );
         Transaction t4 = new Transaction(
                 "Apple.com/Bill",
-                1,
+                "04-01-2020",
                 true,
                 "Subscription",
                 -0.99

@@ -1,6 +1,10 @@
 package com.example.mongodbtest;
 
 import org.springframework.data.annotation.Id;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Transaction {
 
@@ -8,26 +12,32 @@ public class Transaction {
 
     private String id;
     private String description;
-    private int date;
+    private String date;
     private Boolean expense_flag;
     private String category;
     private Double amount;
+    private DateTimeFormatter yearMonthValue;
 
-    public Transaction(String description, int date, Boolean expense_flag, String category, Double amount){
+    public Transaction(String description, String date, Boolean expense_flag, String category, Double amount){
 
         this.description = description;
         this.date = date;
         this.expense_flag = expense_flag;
         this.category = category;
         this.amount = amount;
+        this.yearMonthValue = null;
     }
 
     public String getId(){
         return id;
     }
 
-    public int getDate(){
+    public String getDate(){
         return date;
+    }
+
+    public void updateYearMonthValue(DateTimeFormatter yearMonthValue){
+        this.yearMonthValue = yearMonthValue;
     }
 
     public Boolean getExpense_Flag(){
