@@ -17,6 +17,7 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
     private List<MonthCategorySummary> summaries;
     private List<Transaction> transactionsGranular;
     private List<Transaction> tempHold;
+    private List<Transaction> tempHold2;
 
     public MonthCategorySumBuilder(List<Transaction> transactions){
         this.transactionsGranular= transactions;
@@ -39,6 +40,7 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
         //THIS TURNS ALL THE DATE TO THE 1ST DAY OF THE MONTH TO ENABLE MONTH SUMMARY
         // ADDS THE NEW TRANSACTION TO A NEW EMPTY ARRAYLIST
         tempHold = new ArrayList<Transaction>();
+        tempHold2 = new ArrayList<Transaction>();
 
         for(Transaction transaction: transactionsGranular){
             String date = transaction.getDate();
@@ -55,8 +57,18 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
                     transaction.getExpense_Flag(),
                     transaction.getCategory(),
                     transaction.getAmount());
+            //some libraries that copy original objects to a temp
+            // Apache Common
+            // maybe copy over permanently
+            // Transfer Objects / Value Objects. Java pojos, transport data through layers of application, no state
+            // data grouped by folders (service classes) - traditionally, you have controller
+            // Service Layer = back-end logic, inside of Spring its called "service"
+            // struts uses sessionBean
+            // service handles all the logic
+            //
 
             tempHold.add(newDateTransaction);
+
         }
 
 
@@ -74,8 +86,34 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
                 .collect(Collectors.groupingBy(Transaction::getDate,
                 Collectors.summingDouble(Transaction::getAmount)));
 
-        foodMonthlySums.forEach((key, value) -> summaries.add(new MonthCategorySummary(key, value,0)));
+        foodMonthlySums.forEach((key, value) -> summaries.add(new MonthCategorySummary(key, value*-1,0)));
 
+
+        Map<String, Double> rentMonthlySums =
+                tempHold.stream()
+                        .filter(transaction -> transaction.getCategory().equals("Rent"))
+                        .collect(Collectors.groupingBy(Transaction::getDate,
+                                Collectors.summingDouble(Transaction::getAmount)));
+
+
+        summaries.forEach((summary)->{
+            rentMonthlySums.forEach((key,value)->{
+                if (key.equals(summary.getMonth())) {
+                    summary.setRentAmount(value*-1);
+                }else{
+                    summaries.add(new MonthCategorySummary(key, 0, value*-1));
+                }
+            });
+        });
+
+
+        rentMonthlySums.forEach((key,value)->{
+            summaries.forEach((summary)->{
+                if(key.equals(summary.getMonth())){
+                    summary.setRentAmount(value*-1);
+                }
+            })
+        })
 
     }
 

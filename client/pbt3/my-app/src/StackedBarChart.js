@@ -16,7 +16,7 @@ const StackedBarChart = () =>{
       },[])
 
     const loadChartData = async () => {
-        const chartData = await API.get('/transactions/test');
+        const chartData = await API.get('/transactions/MonthCategorySummary');
         setChartData(chartData)
         console.log(chartData);
       }

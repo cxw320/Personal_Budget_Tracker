@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface SummaryBuilder {
 
-
     public void setFilter();
     public void setDate();
     public void setCategory();

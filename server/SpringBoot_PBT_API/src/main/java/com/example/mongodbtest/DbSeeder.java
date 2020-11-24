@@ -48,7 +48,49 @@ public class DbSeeder implements CommandLineRunner {
                 "Subscription",
                 -0.99
         );
+        Transaction t5 = new Transaction(
+                "SILVA realty",
+                "01-01-2020",
+                true,
+                "Rent",
+                -800.00
+        );
+        Transaction t6 = new Transaction(
+                "SILVA realty",
+                "02-01-2020",
+                true,
+                "Rent",
+                -800.00
+        );
+        Transaction t7 = new Transaction(
+                "SILVA realty",
+                "03-01-2020",
+                true,
+                "Rent",
+                -800.00
+        );
+        Transaction t8 = new Transaction(
+                "SILVA realty",
+                "04-01-2020",
+                true,
+                "Rent",
+                -800.00
+        );
+        Transaction t9 = new Transaction(
+                "Wegmans",
+                "02-20-2020",
+                true,
+                "Food",
+                -80.20
+        );
 
+        Transaction t10 = new Transaction(
+                "Pemberton Farms",
+                "03-20-2020",
+                true,
+                "Food",
+                -120.20
+        );
 
         //Drop existing collection
         this.transactionRepository.deleteAll();
@@ -58,6 +100,12 @@ public class DbSeeder implements CommandLineRunner {
         this.transactionRepository.save(t2);
         this.transactionRepository.save(t3);
         this.transactionRepository.save(t4);
+        this.transactionRepository.save(t5);
+        this.transactionRepository.save(t6);
+        this.transactionRepository.save(t7);
+        this.transactionRepository.save(t8);
+        this.transactionRepository.save(t9);
+        this.transactionRepository.save(t10);
 
     }
 
