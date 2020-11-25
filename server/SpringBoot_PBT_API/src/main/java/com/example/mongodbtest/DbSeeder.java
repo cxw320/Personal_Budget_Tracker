@@ -24,7 +24,7 @@ public class DbSeeder implements CommandLineRunner {
                 "01-03-2020",
                 true,
                 "Food",
-                -9.35
+                -15.00
         );
 
         Transaction t2 = new Transaction(
@@ -32,7 +32,7 @@ public class DbSeeder implements CommandLineRunner {
                 "02-01-2020",
                 false,
                 "Paycheck",
-                2000.0
+                1500.00
         );
         Transaction t3 = new Transaction(
                 "Rosebud",
@@ -42,11 +42,11 @@ public class DbSeeder implements CommandLineRunner {
                 -47.52
         );
         Transaction t4 = new Transaction(
-                "Apple.com/Bill",
+                "Pemberton Farms",
                 "04-01-2020",
                 true,
-                "Subscription",
-                -0.99
+                "Food",
+                -80.00
         );
         Transaction t5 = new Transaction(
                 "SILVA realty",

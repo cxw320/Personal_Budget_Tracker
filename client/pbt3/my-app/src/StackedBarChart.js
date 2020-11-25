@@ -16,7 +16,7 @@ const StackedBarChart = () =>{
       },[])
 
     const loadChartData = async () => {
-        const chartData = await API.get('/transactions/MonthCategorySummary');
+        const chartData = await API.get('/transactions/MonthSummary');
         setChartData(chartData)
         console.log(chartData);
       }
@@ -40,7 +40,7 @@ const StackedBarChart = () =>{
         <YAxis/>
         <Tooltip/>
         <Legend />
-        <Bar dataKey="foodAmount" stackId="a" fill="#8884d8" />
+        <Bar dataKey="amount" stackId="a" fill="#8884d8" />
         <Bar dataKey="rentAmount" stackId="a" fill="#82ca9d" />
         </BarChart>
     

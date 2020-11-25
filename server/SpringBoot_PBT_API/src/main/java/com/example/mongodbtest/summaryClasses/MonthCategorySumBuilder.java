@@ -17,7 +17,7 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
     private List<MonthCategorySummary> summaries;
     private List<Transaction> transactionsGranular;
     private List<Transaction> tempHold;
-    private List<Transaction> tempHold2;
+
 
     public MonthCategorySumBuilder(List<Transaction> transactions){
         this.transactionsGranular= transactions;
@@ -40,7 +40,7 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
         //THIS TURNS ALL THE DATE TO THE 1ST DAY OF THE MONTH TO ENABLE MONTH SUMMARY
         // ADDS THE NEW TRANSACTION TO A NEW EMPTY ARRAYLIST
         tempHold = new ArrayList<Transaction>();
-        tempHold2 = new ArrayList<Transaction>();
+
 
         for(Transaction transaction: transactionsGranular){
             String date = transaction.getDate();
@@ -80,6 +80,29 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
 
     public void calcSums(){
 
+        List<Transaction> foodTrans = new ArrayList<Transaction>();
+        List<Transaction> rentTrans = new ArrayList<Transaction>();
+
+        for(Transaction transaction:tempHold){
+            if(transaction.getCategory().equals("Food")){
+                foodTrans.add(transaction);
+            }else if(transaction.getCategory().equals("Rent")){
+                rentTrans.add(transaction);
+            }
+        }
+
+        Map<String, Double> foodSums =
+                foodTrans.stream()
+                        .collect(Collectors.groupingBy(Transaction::getDate,
+                                Collectors.summingDouble(Transaction::getAmount)));
+        Map<String, Double> rentSums =
+                rentTrans.stream()
+                        .collect(Collectors.groupingBy(Transaction::getDate,
+                                Collectors.summingDouble(Transaction::getAmount)));
+
+
+
+        /*
         Map<String, Double> foodMonthlySums =
                 tempHold.stream()
                 .filter(transaction -> transaction.getCategory().equals("Food"))
@@ -106,6 +129,7 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
             });
         });
 
+        /*
 
         rentMonthlySums.forEach((key,value)->{
             summaries.forEach((summary)->{
@@ -113,7 +137,7 @@ public class MonthCategorySumBuilder implements SummaryBuilder{
                     summary.setRentAmount(value*-1);
                 }
             })
-        })
+        })*/
 
     }
 

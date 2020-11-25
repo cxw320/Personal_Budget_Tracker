@@ -9,7 +9,7 @@ public class Transaction {
 
     @Column(name ="ID")
     @Id
-    private int id;
+    private Long id;
 
     @Column(name="description")
     @Basic
@@ -19,6 +19,14 @@ public class Transaction {
     @Basic
     private LocalDate date;
 
+    @Column(name="month")
+    @Basic
+    private LocalDate month;
+
+    @Column(name="year")
+    @Basic
+    private LocalDate year;
+
     @Column(name="category")
     @Basic
     private String category;
@@ -27,7 +35,7 @@ public class Transaction {
     @Basic
     private double amount;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,7 +55,15 @@ public class Transaction {
         return amount;
     }
 
-    public void setId(int id) {
+    public LocalDate getMonth() {
+        return month;
+    }
+
+    public LocalDate getYear() {
+        return year;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,4 +82,14 @@ public class Transaction {
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
+    public void setMonth(LocalDate month) {
+        this.month = month;
+    }
+
+    public void setYear(LocalDate year) {
+        this.year = year;
+    }
+
+
 }
